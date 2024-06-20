@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <input type="file" id="fileInput" accept=".txt,.bz2" /> -->
+    <div id="output"></div>
+    <input src="/10m.txt">
+    <!-- <script>
+      document
+        .getElementById("fileInput")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          if (!file) return;
+
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const contents = e.target.result;
+            const lines = contents.split("\n").filter(Boolean);
+            const numbers = lines.map((line) => parseFloat(line));
+
+            if (numbers.length === 0) {
+              document.getElementById("output").innerText =
+                "Файл не містить чисел.";
+              return;
+            }
+            let max = -Infinity;
+            let min = Infinity;
+            let sum = 0;
+
+            //the smallest and the bigest digit
+            for (let num of numbers) {
+              if (num > max) max = num;
+              if (num < min) min = num;
+              sum += num;
+            }
+            //mediana
+            numbers.sort((a, b) => a - b);
+            const middleIndex = Math.floor(numbers.length / 2);
+            let mediana;
+            numbers.length % 2 === 0
+              ? (mediana =
+                  (numbers[middleIndex - 1] + numbers[middleIndex]) * 0.5)
+              : (mediana = numbers[middleIndex]);
+
+            //average arrifmetic
+            const average = sum / numbers.length;
+
+            //optional: increasing
+            let longestIncreasing = [];
+            let currentIncreasing = [numbers[0]];
+
+            for (let i = 1; i < numbers.length; i++) {
+              if (numbers[i] > numbers[i - 1]) {
+                currentIncreasing.push(numbers[i]);
+              } else {
+                if (currentIncreasing.length > longestIncreasing.length) {
+                  longestIncreasing = currentIncreasing;
+                }
+                currentIncreasing = [numbers[i]];
+              }
+            }
+            if (currentIncreasing.length > longestIncreasing.length) {
+              longestIncreasing = currentIncreasing;
+            }
+
+            //optional: decreasing
+            let longestDecreasing = [];
+            let currentDecreasing = [numbers[0]];
+
+            for (let i = 1; i < numbers.length; i++) {
+              if (numbers[i] < numbers[i - 1]) {
+                currentDecreasing.push(numbers[i]);
+              } else {
+                if (currentDecreasing.length > longestDecreasing.length) {
+                  longestDecreasing = currentDecreasing;
+                }
+                currentDecreasing = [numbers[i]];
+              }
+            }
+            if (currentDecreasing.length > longestDecreasing.length) {
+              longestDecreasing = currentDecreasing;
+            }
+
+
+            document.getElementById("output").innerText = `
+          Максимум: ${max}
+          Мінімум: ${min}
+          Медіана: ${mediana}
+          Середнє: ${average}
+          Найбільша зростаюча послідовність: ${longestIncreasing.join(", ")}
+          Найбільша спадна послідовність: ${longestDecreasing.join(", ")}
+        `;
+          };
+          reader.readAsText(file);
+        });
+    </script> -->
+    <script src="index.js"></script>
+  </body>
+</html>
